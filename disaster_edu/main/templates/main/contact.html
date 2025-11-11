@@ -1,0 +1,88 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4 fw-bold text-warning">Get in Touch</h2>
+
+  <!-- ✅ Bootstrap Modal for Success/Error -->
+  <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="messageModalLabel">Notification</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center fs-5" id="modalMessageBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 align-items-stretch">
+    <!-- Contact Form -->
+    <div class="col-md-6">
+      <div class="card p-4 shadow-lg border-0 rounded-4 contact-card">
+        <h4 class="fw-bold mb-3 text-secondary">📬 Send Us a Message</h4>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Your Name</label>
+            <input type="text" class="form-control rounded-3" name="name" placeholder="Enter your name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input type="email" class="form-control rounded-3" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Message</label>
+            <textarea class="form-control rounded-3" name="message" rows="4" placeholder="Type your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn w-100 fw-semibold" style="background-color:#FFD60A;">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Map & Info -->
+    <div class="col-md-6">
+      <div class="card p-4 shadow-lg border-0 rounded-4 contact-card">
+        <h4 class="fw-bold mb-3 text-secondary">📍 Our Location</h4>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18..."
+                width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+        <hr>
+        <p><strong>📞 Phone:</strong> +91 9876543210</p>
+        <p><strong>📧 Email:</strong> ndma@disasteredu.org</p>
+        <p><strong>🏫 Address:</strong> National Disaster Management Authority (NDMA) , India</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.contact-card {
+  background-color: #f8f9fa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.modal-content {
+  background-color: #fffbea;
+}
+</style>
+
+<!-- ✅ Script to trigger modal if message exists -->
+{% if messages %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+    const messageBody = document.getElementById('modalMessageBody');
+    {% for message in messages %}
+      messageBody.innerHTML = "{{ message|escapejs }}";
+      messageModal.show();
+      setTimeout(() => { messageModal.hide(); }, 4000);
+    {% endfor %}
+  });
+</script>
+{% endif %}
+{% endblock %}

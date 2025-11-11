@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">Disaster Preparedness Quiz</h2>
+
+{% if results %}
+  <div class="card p-4 mb-4">
+    <h4>Your Score: {{ score }} / {{ total }} ({{ percentage }}%)</h4>
+    <hr>
+    {% for r in results %}
+      <div class="mb-3">
+        <p><strong>{{ forloop.counter }}. {{ r.question }}</strong></p>
+        <p>Your answer: <span class="{{ r.is_correct|yesno:'text-success,text-danger' }}">{{ r.selected }}</span></p>
+        {% if not r.is_correct %}
+          <p>Correct answer: <span class="text-success">{{ r.correct }}</span></p>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <a href="{% url 'quiz' %}" class="btn btn-primary">Retake Quiz</a>
+  </div>
+{% else %}
+  <form method="POST" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    {% for q in questions %}
+      <div class="mb-4">
+        <h5>Q{{ forloop.counter }}. {{ q.question }}</h5>
+        {% for opt in q.options %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="question_{{ q.id }}" value="{{ opt }}" id="q{{ q.id }}_{{ forloop.counter }}" required>
+            <label class="form-check-label" for="q{{ q.id }}_{{ forloop.counter }}">{{ opt }}</label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Submit Quiz</button>
+  </form>
+{% endif %}
+
+{% endblock %}

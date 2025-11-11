@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-5 fw-bold">Disaster Awareness</h2>
+    <div class="row g-4 justify-content-center">
+        {% for d in disasters %}
+        <div class="col-md-4 col-sm-6">
+            <a href="{% url 'disaster_detail' d.name %}" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm disaster-card">
+                    <img src="{% static d.image %}" class="card-img-top" alt="{{ d.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">{{ d.name }} Safety</h5>
+                        <p class="card-text">Click to learn how to stay safe during {{ d.name|lower }}s.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .disaster-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .disaster-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+    .disaster-card img {
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 3px solid #198754;
+    }
+</style>
+{% endblock %}

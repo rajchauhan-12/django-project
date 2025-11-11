@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="text-center">
+        <h2 class="fw-bold">{{ name }} Safety Guide</h2>
+        <img src="{% static image %}" class="img-fluid rounded shadow my-4" style="max-height:400px; object-fit:cover;" alt="{{ name }}">
+    </div>
+    <div class="col-md-8 mx-auto">
+        <h4 class="text-success mb-3">Safety Tips:</h4>
+        <ul class="list-group list-group-flush shadow-sm">
+            {% for tip in tips %}
+            <li class="list-group-item">{{ tip }}</li>
+            {% endfor %}
+        </ul>
+        <div class="text-center mt-4">
+            <a href="{% url 'awareness' %}" class="btn btn-success">← Back to Awareness</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

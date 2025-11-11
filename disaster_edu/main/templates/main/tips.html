@@ -1,0 +1,159 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ✅ Hero Section -->
+<section class="tips-hero text-white text-center d-flex align-items-center justify-content-center">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1 class="fw-bold display-5 mb-3">Safety & Preparedness Tips</h1>
+    <p class="lead">Stay informed. Stay ready. Protect your school and community.</p>
+  </div>
+</section>
+
+<!-- ✅ Main Tips Section -->
+<div class="container py-5">
+  <h2 class="text-center fw-bold mb-5 text-warning">💡 Disaster Preparedness Guidelines</h2>
+  
+  <!-- Tips Grid -->
+  <div class="row g-4">
+    <!-- Before Disaster -->
+    <div class="col-md-4">
+      <div class="tip-card p-4 text-center shadow-sm">
+        <div class="icon mb-3">🧭</div>
+        <h4 class="fw-bold text-primary">Before Disaster</h4>
+        <ul class="list-unstyled mt-3">
+          <li>✔️ Create an emergency plan for your family or school.</li>
+          <li>✔️ Prepare a first aid kit and survival essentials.</li>
+          <li>✔️ Know the nearest safe zones and evacuation routes.</li>
+          <li>✔️ Conduct regular drills and safety awareness sessions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- During Disaster -->
+    <div class="col-md-4">
+      <div class="tip-card p-4 text-center shadow-sm">
+        <div class="icon mb-3">🚨</div>
+        <h4 class="fw-bold text-danger">During Disaster</h4>
+        <ul class="list-unstyled mt-3">
+          <li>⚠️ Stay calm and follow your teacher or safety leader.</li>
+          <li>⚠️ Avoid elevators — use stairs instead.</li>
+          <li>⚠️ Protect your head and stay away from windows.</li>
+          <li>⚠️ Follow instructions from emergency authorities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- After Disaster -->
+    <div class="col-md-4">
+      <div class="tip-card p-4 text-center shadow-sm">
+        <div class="icon mb-3">🩹</div>
+        <h4 class="fw-bold text-success">After Disaster</h4>
+        <ul class="list-unstyled mt-3">
+          <li>✅ Check yourself and others for injuries.</li>
+          <li>✅ Report missing persons or damage to authorities.</li>
+          <li>✅ Avoid rumor spreading — share verified information only.</li>
+          <li>✅ Support others emotionally and stay connected.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Extra Tips / Professional Section -->
+<section class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4 text-secondary">🌍 Additional Professional Tips</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="professional-tip p-4 rounded-4 border shadow-sm bg-white">
+          <h5 class="fw-bold text-primary">1️⃣ Build a Culture of Preparedness</h5>
+          <p>Include disaster education in your school curriculum and host annual mock drills. Students should know emergency exits and assembly points.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="professional-tip p-4 rounded-4 border shadow-sm bg-white">
+          <h5 class="fw-bold text-success">2️⃣ Digital Safety Training</h5>
+          <p>Use apps or digital tools for emergency alerts. Encourage teachers and students to install trusted safety and weather warning apps.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="professional-tip p-4 rounded-4 border shadow-sm bg-white">
+          <h5 class="fw-bold text-danger">3️⃣ Mental Health Support</h5>
+          <p>After a disaster, organize counseling sessions. Emotional recovery is as vital as physical safety.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="professional-tip p-4 rounded-4 border shadow-sm bg-white">
+          <h5 class="fw-bold text-warning">4️⃣ Connect with Local Authorities</h5>
+          <p>Partner with the fire department, police, and health services to ensure rapid communication during emergencies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Quote & Emergency Section -->
+<section class="text-center py-5 quote-section text-white">
+  <div class="overlay"></div>
+  <div class="content">
+    <h3 class="fw-bold mb-3">"Preparedness today saves lives tomorrow."</h3>
+    <p class="fs-5">In case of emergencies, contact: <br>
+      <strong>📞 National Disaster Helpline: 1078</strong> | <strong>🚑 Emergency: 112</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ✅ Styles -->
+<style>
+.tips-hero {
+  position: relative;
+  background: url("{% static 'main/images/tips-bg.jpg' %}") center/cover no-repeat;
+  height: 55vh;
+}
+.tips-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+.tips-hero .content {
+  position: relative;
+  z-index: 2;
+}
+.tip-card {
+  background: #fff;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+.tip-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.tip-card .icon {
+  font-size: 40px;
+}
+.quote-section {
+  position: relative;
+  background: linear-gradient(to right, #222, #555);
+}
+.quote-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.quote-section .content {
+  position: relative;
+  z-index: 2;
+}
+.professional-tip {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.professional-tip:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+
+{% endblock %}
